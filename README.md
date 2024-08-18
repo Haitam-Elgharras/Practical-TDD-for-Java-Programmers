@@ -10,6 +10,7 @@ This repository contains exercises, notes, and code examples from Matt Greencrof
 2. [Setup](#setup)
 3. [Course Progress](#course-progress)
     - [Module 1: Introduction to Test Driven Development (TDD)](#module-1-introduction-to-tdd)
+    - [Module 2: Writing Effective Unit Tests](#module-2-writing-effective-unit-tests)
 
 ## Introduction
 
@@ -38,6 +39,14 @@ TDD follows a simple workflow known as Red, Green, Refactor:
 
 TDD is designed to help developers write clean, functional code. Although it's ideal for new projects,
 the course will also cover how to apply TDD to existing codebases where TDD wasn't originally used.
+
+### Module 2: Writing Effective Unit Tests
+
+Test Driven Development (TDD) involves a detailed process where each of the three main steps—Red, Green, and Refactor—follows specific rules and mini-steps. It's important to start by writing tests before writing any code. This iterative process ensures that each piece of functionality is thoroughly tested, often requiring multiple tests to cover all scenarios.
+
+**Unit Testing** is the primary focus in TDD. The goal is to write tests that check a single, identifiable piece of logic or behavior in isolation. These tests are not meant to verify entire end-to-end processes, which would be the domain of integration tests, not TDD.
+
+For each piece of logic, create multiple tests to cover different scenarios. This ensures that all likely combinations of logic are tested. By doing so, the suite of tests will comprehensively validate the application's functionality.
 
 
 
