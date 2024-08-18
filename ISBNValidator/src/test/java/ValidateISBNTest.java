@@ -18,10 +18,28 @@ public class ValidateISBNTest {
     }
 
     @Test
+    public void checkISBN_AValidThirteenDigitISBN_ReturnTrue() {
+        ValidateISBN validator = new ValidateISBN();
+
+        boolean result = validator.checkISBN("9780735211292");
+
+        assertTrue(result);
+    }
+
+    @Test
     public void checkISBN_AnInvalidTenDigitISBN_ReturnsFalse() {
         ValidateISBN validator = new ValidateISBN();
 
         boolean result = validator.checkISBN("0140449117");
+
+        assertFalse(result);
+    }
+
+    @Test
+    public void checkISBN_AnInvalidThirteenDigitISBN_ReturnsFalse() {
+        ValidateISBN validator = new ValidateISBN();
+
+        boolean result = validator.checkISBN("0000000000001");
 
         assertFalse(result);
     }
