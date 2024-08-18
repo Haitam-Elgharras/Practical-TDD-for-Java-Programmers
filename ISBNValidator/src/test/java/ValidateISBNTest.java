@@ -5,24 +5,46 @@ import static org.junit.jupiter.api.Assertions.*;
 
 
 public class ValidateISBNTest {
-
+    //    MethodName_StateUnderTest_ExpectedBehavior eg: MethodName: checkISBN StateUnderTest: AValid10DigitISBN ExpectedBehavior: ReturnsTrue
     @Test
-    public void ValidateISBN_CheckAValid10DigitISBN_ReturnsTrue() {
+    public void checkISBN_AValidTenDigitISBN_ReturnsTrue() {
         ValidateISBN validator = new ValidateISBN();
 
-        boolean result1 = validator.checkISBN(140449116);
-        boolean result2 = validator.checkISBN(131016490);
+        boolean result = validator.checkISBN("0140449116");
+        assertTrue(result, "First value");
 
-        assertTrue(result1, "First value");
-        assertTrue(result2, "Second value");
+        result = validator.checkISBN("0131016490");
+        assertTrue(result, "Second value");
     }
 
     @Test
-    public void ValidateISBN_CheckAnInvalid10DigitISBN_ReturnsFalse() {
+    public void checkISBN_AnInvalidTenDigitISBN_ReturnsFalse() {
         ValidateISBN validator = new ValidateISBN();
 
-        boolean result = validator.checkISBN(140449117);
+        boolean result = validator.checkISBN("0140449117");
 
         assertFalse(result);
     }
+
+    @Test
+    public void checkISBN_AValidTenDigitISBNWithX_ReturnTrue() {
+        ValidateISBN validator = new ValidateISBN();
+
+        assertTrue(validator.checkISBN("012000030X"));
+    }
+
+    @Test
+    public void checkISBN_IsNotTenDigitLong_ThrowAnException() {
+        ValidateISBN validator = new ValidateISBN();
+
+        assertThrows(NumberFormatException.class, ()->validator.checkISBN("123456789"));
+    }
+
+    @Test
+    public void checkISBN_NonNumericISBN_ThrowAnException() {
+        ValidateISBN validator = new ValidateISBN();
+
+        assertThrows(NumberFormatException.class,()->validator.checkISBN("helloworld"));
+    }
+
 }
