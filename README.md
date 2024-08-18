@@ -12,7 +12,7 @@ This repository contains exercises, notes, and code examples from Matt Greencrof
     - [Module 1: Introduction to Test Driven Development (TDD)](#module-1-introduction-to-tdd)
     - [Module 2: Writing Effective Unit Tests](#module-2-writing-effective-unit-tests)
     - [Module 3: Project I Introduction and Setup](#module-3-project-introduction-and-setup)
-
+    - [Module 4: Writing the First Test](#module-4-writing-the-first-test)
 ## Introduction
 
 This course introduces Test Driven Development (TDD) and its benefits for Java programmers.
@@ -59,3 +59,11 @@ In this section, we start working on a new project to apply the principles of Te
 
 The project will involve writing code that accepts a full ISBN number, including the check digit, and determines whether it is valid. The logic for validating an ISBN will be explained in detail as we progress through the project.
 
+### Module 4: Writing the First Test
+
+The initial step is to write a test for a known valid 10-digit ISBN number, using real-world examples such as those found on book retailer websites.
+
+**Key Concepts**:
+- **Test-First Approach**: Begin by writing a test that defines the expected outcome for a specific example, such as validating a known ISBN number.
+- **Focus on Outcomes**: When writing tests, the primary focus should be on the expected outcomes rather than the underlying logic or code structure.
+- **Incremental Testing**: Start with a simple test for a valid ISBN and gradually build more tests to cover additional scenarios and logic.
