@@ -15,6 +15,7 @@ This repository contains exercises, notes, and code examples from Matt Greencrof
     - [Module 4: Writing the First Test](#module-4-writing-the-first-test)
     - [Module 5: Implementing and Refactoring Code](#module-5-implementing-and-refactoring-code)
     - [Module 6: One assertion per test](#module-6-one-assertion-per-test)
+    - [Module 7: Best Practices for Writing Effective Tests](#module-7-best-practices-for-writing-effective-tests)
 ## Introduction
 
 This course introduces Test Driven Development (TDD) and its benefits for Java programmers.
@@ -91,6 +92,32 @@ leading to a more robust and well-structured implementation.
 
 - **Single Responsibility of Tests**: Each test should ideally check one specific piece of logic. However, multiple assertions can be used within a single test method when:
    - Testing multiple values to verify that various parts of a method or functionality work correctly.
-   - Testing different examples of the same logical principle, such as validating multiple ISBN numbers to ensure they all return true.
+   - Testing different examples of the same logical principle, such as validating multiple ISBNs to ensure they all return true.
 - **Handling Assertions**: When multiple assertions are used, it’s useful to add descriptive messages to indicate which specific assertion failed. This helps in debugging by clearly identifying the problem area.
 
+### Module 7: Best Practices for Writing Effective Tests
+
+When writing tests, it's essential to follow best practices to ensure that the tests are effective, reliable, and maintainable.
+Here are some key practices to keep in mind:
+
+1. **Test Business Logic, Not Methods**:
+    - Focus on validating the business logic rather than checking individual methods.
+    - Ensure tests assess the correctness of overall functionality rather than specific implementation details.
+
+2. **Keep Tests Simple and Focused**:
+    - Each test should cover a single piece of functionality.
+    - Typically, a test method should have only one assertion. Multiple assertions are acceptable only if they test different examples of the same logic or validate multiple related values.
+
+3. **Ensure Repeatability**:
+    - Tests should always produce the same result given the same input.
+    - Avoid tests that depend on changing conditions or external states to maintain consistency.
+
+4. **Thorough Testing**:
+    - Cover all possible scenarios, including valid and invalid cases, edge cases, and error conditions.
+    - For complex functionality, create comprehensive test cases to ensure that all aspects are thoroughly validated.
+
+5. **Iterative Development**:
+    - Follow the TDD cycle: write a failing test, write the minimum code to pass the test, and then refactor.
+    - This approach helps in incrementally building functionality and improving code quality.
+
+By adhering to these practices, you can ensure that your tests are effective, reliable, and provide meaningful validation of your code's functionality.
