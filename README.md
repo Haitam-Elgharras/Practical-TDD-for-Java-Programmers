@@ -11,6 +11,7 @@ This repository contains exercises, notes, and code examples from Matt Greencrof
 3. [Course Progress](#course-progress)
     - [Module 1: Introduction to Test Driven Development (TDD)](#module-1-introduction-to-tdd)
     - [Module 2: Writing Effective Unit Tests](#module-2-writing-effective-unit-tests)
+    - [Module 3: Project I Introduction and Setup](#module-3-project-introduction-and-setup)
 
 ## Introduction
 
@@ -48,5 +49,13 @@ Test Driven Development (TDD) involves a detailed process where each of the thre
 
 For each piece of logic, create multiple tests to cover different scenarios. This ensures that all likely combinations of logic are tested. By doing so, the suite of tests will comprehensively validate the application's functionality.
 
+### Module 3: Project I Introduction and Setup
 
+In this section, we start working on a new project to apply the principles of Test Driven Development (TDD) in a practical way. The project involves writing business logic to validate an ISBN (International Standard Book Number), a unique identifier found on the barcode of books.
+
+**Project Overview**:
+- **Objective**: Write code to verify whether a given ISBN number is valid.
+- **ISBN Validation**: ISBN numbers include a check digit, which can be calculated from the other digits in the number. If any digit in the ISBN is incorrect, the check digit will not match, indicating that the ISBN is invalid.
+
+The project will involve writing code that accepts a full ISBN number, including the check digit, and determines whether it is valid. The logic for validating an ISBN will be explained in detail as we progress through the project.
 
