@@ -2,6 +2,6 @@ package com.java.tdd;
 
 public class ValidateISBN {
     public boolean checkISBN(int ISBN) {
-        return true;
+        return ISBN == 140449116 || ISBN == 131016490;
     }
 }

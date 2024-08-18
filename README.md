@@ -14,6 +14,7 @@ This repository contains exercises, notes, and code examples from Matt Greencrof
     - [Module 3: Project I Introduction and Setup](#module-3-project-i-introduction-and-setup)
     - [Module 4: Writing the First Test](#module-4-writing-the-first-test)
     - [Module 5: Implementing and Refactoring Code](#module-5-implementing-and-refactoring-code)
+    - [Module 6: One assertion per test](#module-6-one-assertion-per-test)
 ## Introduction
 
 This course introduces Test Driven Development (TDD) and its benefits for Java programmers.
@@ -85,3 +86,11 @@ The focus in this module is on applying the rules of Test Driven Development (TD
 
 This cycle—Red, Green, Refactor—will be repeated as you continue to write new tests and enhance the code,
 leading to a more robust and well-structured implementation.
+
+### Module 6: One assertion per test
+
+- **Single Responsibility of Tests**: Each test should ideally check one specific piece of logic. However, multiple assertions can be used within a single test method when:
+   - Testing multiple values to verify that various parts of a method or functionality work correctly.
+   - Testing different examples of the same logical principle, such as validating multiple ISBN numbers to ensure they all return true.
+- **Handling Assertions**: When multiple assertions are used, it’s useful to add descriptive messages to indicate which specific assertion failed. This helps in debugging by clearly identifying the problem area.
+
