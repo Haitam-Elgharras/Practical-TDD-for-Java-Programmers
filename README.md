@@ -11,8 +11,9 @@ This repository contains exercises, notes, and code examples from Matt Greencrof
 3. [Course Progress](#course-progress)
     - [Module 1: Introduction to Test Driven Development (TDD)](#module-1-introduction-to-tdd)
     - [Module 2: Writing Effective Unit Tests](#module-2-writing-effective-unit-tests)
-    - [Module 3: Project I Introduction and Setup](#module-3-project-introduction-and-setup)
+    - [Module 3: Project I Introduction and Setup](#module-3-project-i-introduction-and-setup)
     - [Module 4: Writing the First Test](#module-4-writing-the-first-test)
+    - [Module 5: Implementing and Refactoring Code](#module-5-implementing-and-refactoring-code)
 ## Introduction
 
 This course introduces Test Driven Development (TDD) and its benefits for Java programmers.
@@ -67,3 +68,20 @@ The initial step is to write a test for a known valid 10-digit ISBN number, usin
 - **Test-First Approach**: Begin by writing a test that defines the expected outcome for a specific example, such as validating a known ISBN number.
 - **Focus on Outcomes**: When writing tests, the primary focus should be on the expected outcomes rather than the underlying logic or code structure.
 - **Incremental Testing**: Start with a simple test for a valid ISBN and gradually build more tests to cover additional scenarios and logic.
+
+### Module 5: Implementing and Refactoring Code
+
+The focus in this module is on applying the rules of Test Driven Development (TDD) to write and refine code.
+
+**Key Rules of TDD**:
+1. **Test the Expected Outcome**: Start by writing tests that define the expected outcomes for given examples.
+2. **Avoid Pre-Judging Design**: Let the tests drive the design and implementation of the code.
+3. **Write Minimum Code**: Implement only the minimal code required to make the tests pass.
+
+**TDD Process Overview**:
+- **Red**: Write the test that defines the expected outcome for a specific piece of functionality. This initial test will fail because the required code hasn't been written yet.
+- **Green**: Implement the minimal code necessary to make the test pass. At this stage, focus solely on passing the test, even if it involves placeholder or simplistic code.
+- **Refactor**: Improve the code’s structure and clarity without changing its behavior. This step involves making refinements, such as renaming variables, and ensuring that the code remains efficient and maintainable.
+
+This cycle—Red, Green, Refactor—will be repeated as you continue to write new tests and enhance the code,
+leading to a more robust and well-structured implementation.
