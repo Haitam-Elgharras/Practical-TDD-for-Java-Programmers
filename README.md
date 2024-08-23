@@ -17,6 +17,7 @@ This repository contains exercises, notes, and code examples from Matt Greencrof
     - [Module 6: One assertion per test](#module-6-one-assertion-per-test)
     - [Module 7: Best Practices for Writing Effective Tests](#module-7-best-practices-for-writing-effective-tests)
     - [Module 8: Understanding Mocking and Independent Test Execution](#module-8-understanding-mocking-and-independent-test-execution)
+    - [Module 9: Avoiding Tautologies in Tests](#module-9-avoiding-tautologies-in-tests)
 ## Introduction
 
 This course introduces Test Driven Development (TDD) and its benefits for Java programmers.
@@ -187,3 +188,105 @@ public class StockManagementTests {
 - **Verification of Calls**: The number of calls to the `lookup` method is verified separately within each test method. The calls do not accumulate across tests, ensuring accurate verification for each scenario.
 
 By understanding and applying these concepts, you can write effective unit tests that accurately validate your code's functionality.
+
+### Module 9: Avoiding Tautologies in Tests
+
+In this module, we discuss the concept of tautologies in tests and how to avoid them. A tautology occurs when the logic in your test is the same as the logic in your implementation, which can lead to false positives in your tests.
+
+#### Understanding Tautologies
+
+A tautology in testing means that the test code repeats the logic of the code being tested. This can mask errors because if both the test and the implementation have the same mistake, the test will still pass.
+
+**Example**:
+Consider a `NumberValidator` class with a method `isPrime` to check if a number is prime, and a test class `NumberValidatorTests` with a method `checkPrimeNumbers` to test it.
+
+```java
+public class NumberValidator {
+    public boolean isPrime(int number) {
+        if (number <= 1) {
+            return false;
+        }
+        for (int i = 2; i <= Math.sqrt(number); i++) {
+            if (number % i == 0) {
+                return false;
+            }
+        }
+        return true;
+    }
+}
+```
+
+```java
+import org.junit.jupiter.api.Test;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+
+public class NumberValidatorTests {
+    @Test
+    public void checkPrimeNumbers() {
+        int[] numbers = {2, 3, 5, 7, 11, 13, 17, 19, 23, 29};
+        var validator = new NumberVlidator();
+       boolean isPrime;
+        for (int number : numbers) {
+            if (number <= 1) {
+                isPrime = false;
+            }
+            for (int i = 2; i <= Math.sqrt(number); i++) {
+                if (number % i == 0) {
+                    isPrime = false;
+                }
+            }
+            isPrime = true;
+            
+            assertEquals(isPrime, validator.isPrime(number));
+        }
+    }
+}
+```
+
+In this example, if the logic in `isPrime` is incorrect, the test might still pass if the same logic is used in the test.
+
+#### Avoiding Tautologies
+
+To avoid tautologies, follow these guidelines:
+1. **Separate Logic from Tests**: Tests should be based on known examples and expected outcomes, not on calculations or logic.
+2. **Split Tests**: Separate tests for different scenarios (e.g., prime and non-prime numbers).
+3. **Use Assertions**: Directly assert expected outcomes without recalculating them in the test.
+
+**Refactored Example**:
+
+```java
+import org.junit.jupiter.api.BeforeAll;
+import org.junit.jupiter.api.Test;
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertTrue;
+
+public class NumberValidatorTests {
+    private static NumberValidator numberValidator;
+
+    @BeforeAll
+    public static void setUp() {
+        numberValidator = new NumberValidator();
+    }
+
+    @Test
+    public void checkPrimeNumbers() {
+        int[] primeNumbers = {2, 3, 5, 7, 11, 13, 17, 19, 23, 29};
+        for (int primeNumber : primeNumbers) {
+            assertTrue(numberValidator.isPrime(primeNumber), primeNumber + " is not a prime number");
+        }
+    }
+
+    @Test
+    public void checkNonPrimeNumbers() {
+        int[] nonPrimeNumbers = {1, 4, 8, 9, 15, 25, 60, 63, 207};
+        for (int nonPrimeNumber : nonPrimeNumbers) {
+            assertFalse(numberValidator.isPrime(nonPrimeNumber), nonPrimeNumber + " is a prime number");
+        }
+    }
+}
+```
+
+In this refactored example, the tests are split into two methods: one for prime numbers and one for non-prime numbers. Each test directly asserts the expected outcome without recalculating it, avoiding tautologies.
+
+By following these practices, you can ensure that your tests are reliable and accurately validate your code's functionality.
+
