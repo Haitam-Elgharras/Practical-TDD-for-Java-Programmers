@@ -16,6 +16,7 @@ This repository contains exercises, notes, and code examples from Matt Greencrof
     - [Module 5: Implementing and Refactoring Code](#module-5-implementing-and-refactoring-code)
     - [Module 6: One assertion per test](#module-6-one-assertion-per-test)
     - [Module 7: Best Practices for Writing Effective Tests](#module-7-best-practices-for-writing-effective-tests)
+    - [Module 8: Understanding Mocking and Independent Test Execution](#module-8-understanding-mocking-and-independent-test-execution)
 ## Introduction
 
 This course introduces Test Driven Development (TDD) and its benefits for Java programmers.
@@ -121,3 +122,68 @@ Here are some key practices to keep in mind:
     - This approach helps in incrementally building functionality and improving code quality.
 
 By adhering to these practices, you can ensure that your tests are effective, reliable, and provide meaningful validation of your code's functionality.
+
+### Module 8: Understanding Mocking and Independent Test Execution
+
+In this module, we will explore the concept of mocking and how independent test execution ensures accurate and reliable test results.
+
+#### Independent Test Execution
+
+Each test method in a test class is executed independently even when sharing a class-level setup(variables, objects, etc.). This means that the state and behavior of mocks are reset before each test method runs, ensuring that tests do not interfere with each other.
+
+**Example**:
+Consider the following test class `StockManagementTests`:
+
+```java
+import com.java.tdd.locator.Book;
+import com.java.tdd.locator.ExternalISBNDataService;
+import com.java.tdd.locator.StockManager;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
+
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.mockito.Mockito.*;
+
+public class StockManagementTests {
+
+    private String isbn = "0140177396";
+
+    private ExternalISBNDataService webService = mock(ExternalISBNDataService.class);
+    private ExternalISBNDataService databaseService = mock(ExternalISBNDataService.class);
+    private StockManager stockManager = new StockManager(databaseService, webService);
+
+    @Test
+    public void canGetACorrectLocatorCode() {
+        when(webService.lookup(isbn)).thenReturn(new Book(isbn, "Of Mice And Men", "J. Steinbeck"));
+
+        String locatorCode = stockManager.getLocatorCode(isbn);
+        assertEquals("7396J4", locatorCode);
+    }
+
+    @Test
+    public void databaseIsUsedIfDataIsPresent() {
+        when(databaseService.lookup(isbn)).thenReturn(new Book(isbn, "Of Mice And Men", "J. Steinbeck"));
+
+        stockManager.getLocatorCode(isbn);
+
+        verify(databaseService, times(1)).lookup(isbn);
+        verify(webService, never()).lookup(anyString());
+    }
+
+    @Test
+    public void webServiceIsUsedIfDataIsNotPresentInDatabase() {
+        when(webService.lookup(isbn)).thenReturn(new Book(isbn, "Of Mice And Men", "J. Steinbeck"));
+
+        stockManager.getLocatorCode(isbn);
+
+        verify(databaseService, times(1)).lookup(isbn);
+        verify(webService, times(1)).lookup(isbn);
+    }
+}
+```
+
+**Explanation**:
+- **Independent Execution**: Each test method (`canGetACorrectLocatorCode`, `databaseIsUsedIfDataIsPresent`, and `webServiceIsUsedIfDataIsNotPresentInDatabase`) runs independently. The mock objects (`databaseService` and `webService`) are reset before each test method runs.
+- **Verification of Calls**: The number of calls to the `lookup` method is verified separately within each test method. The calls do not accumulate across tests, ensuring accurate verification for each scenario.
+
+By understanding and applying these concepts, you can write effective unit tests that accurately validate your code's functionality.

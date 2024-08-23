@@ -1,14 +1,11 @@
 package com.java.tdd.locator;
 
 public class StockManager {
-    private ExternalISBNDataService webService;
     private ExternalISBNDataService databaseService;
+    private ExternalISBNDataService webService;
 
-    public void setWebService(ExternalISBNDataService webService) {
+    public StockManager(ExternalISBNDataService databaseService, ExternalISBNDataService webService) {
         this.webService = webService;
-    }
-
-    public void setDatabaseService(ExternalISBNDataService databaseService) {
         this.databaseService = databaseService;
     }
 
