@@ -1,4 +1,4 @@
-package com.java.tdd;
+package com.java.tdd.isbnValidator;
 
 public class ValidateISBN {
 
@@ -18,16 +18,19 @@ public class ValidateISBN {
     }
 
     private static boolean isAValidShortISBN(String ISBN) {
-        int total=0;
+        int total = 0;
         for (int i = 0; i < SHORT_ISBN; i++) {
-            if(!Character.isDigit(ISBN.charAt(i)) && (i != 9 || ISBN.charAt(i) != 'X' ))
-                throw new NumberFormatException("The ISBN must be a valid numeric value!");
+            char currentChar = ISBN.charAt(i);
 
-            if (i == 9 && ISBN.charAt(i) == 'X') {
-                total += SHORT_ISBN;
-                break;
+            if (!Character.isDigit(currentChar) && (i != 9 || currentChar != 'X')) {
+                System.out.println(i);
+                throw new NumberFormatException("The ISBN must be a valid numeric value!");
             }
-            total += Character.getNumericValue(ISBN.charAt(i)) * (SHORT_ISBN - i);
+
+            if (i == 9 && currentChar == 'X')
+                total += SHORT_ISBN;
+            else
+                total += Character.getNumericValue(currentChar) * (SHORT_ISBN - i);
         }
         return total % SHORT_ISBN_MULTIPLIER == 0;
     }

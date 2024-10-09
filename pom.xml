@@ -10,6 +10,7 @@
     <packaging>pom</packaging>
     <modules>
         <module>ISBNValidator</module>
+        <module>bowlingKata</module>
     </modules>
 
     <properties>

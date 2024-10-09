@@ -1,4 +1,4 @@
-package com.java.tdd;
+package com.java.tdd.numberValidator;
 
 public class NumberValidator {
     public boolean isPrime(int number) {

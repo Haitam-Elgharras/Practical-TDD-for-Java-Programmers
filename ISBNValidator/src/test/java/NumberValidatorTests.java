@@ -1,4 +1,4 @@
-import com.java.tdd.NumberValidator;
+import com.java.tdd.numberValidator.NumberValidator;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 
